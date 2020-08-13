@@ -1,0 +1,57 @@
+{
+  "name": "swagger-parser",
+  "version": "0.1.0",
+  "main": "dist/es5/swagger/index.js",
+  "module": "dist/esnext/swagger/index.js",
+  "scripts": {
+    "test": "tsc -p tsconfig.es5.json & jest --forceExit --detectOpenHandles",
+    "lint-staged": "lint-staged",
+    "lint:ts": "eslint src --ext .ts,.tsx --fix --format codeframe",
+    "lint:ts-error": "npm run lint:ts -- --quiet",
+    "ts-compile-check": "tsc --pretty -p tsconfig.json --noEmit",
+    "build:es5": "tsc -p tsconfig.es5.json",
+    "build:esnext": "tsc -p tsconfig.esnext.json",
+    "prepublish": "rm -rf dist/ & npm run build:esnext & npm run build:es5"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix --format codeframe",
+      "git add"
+    ],
+    "src/**/*.less": [
+      "stylelint --syntax less --fix"
+    ]
+  },
+  "pre-commit": [
+    "ts-compile-check",
+    "lint-staged"
+  ],
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@types/jest": "^24.0.11",
+    "@types/lodash": "^4.14.123",
+    "@typescript-eslint/eslint-plugin": "^1.5.0",
+    "@typescript-eslint/parser": "^1.5.0",
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^24.5.0",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.16.4",
+    "typescript": "^3.3.4000",
+    "babel-eslint": "^9.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
+}

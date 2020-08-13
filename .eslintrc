@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "env": {
+    "jest": true,
+    "browser": true,
+    "jasmine": true
+  },
+  "plugins": ["prettier"],
+  "extends": ["eslint:recommended", "standard", "prettier"],
+  "rules": {
+    "comma-dangle": ["error", "only-multiline"]
+  }
+}

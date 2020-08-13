@@ -1,0 +1,8387 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Little-boy Restful API",
+    "termsOfService": "NO terms of service",
+    "contact": {
+      "name": "master@wacai.com"
+    },
+    "license": {
+      "name": "Little-boy, Version 1.0.0",
+      "url": "http://git.caimi-inc.com/kuangdao/little-boy"
+    }
+  },
+  "host": "little-boy-web.loan.k2.test.wacai.info",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "cache-controller",
+      "description": "Cache Controller"
+    },
+    {
+      "name": "rule-templet-import-export-controller",
+      "description": "Rule Templet Import Export Controller"
+    },
+    {
+      "name": "push-record-controller",
+      "description": "Push Record Controller"
+    },
+    {
+      "name": "send-record-controller",
+      "description": "Send Record Controller"
+    },
+    {
+      "name": "sms审核接口",
+      "description": "Sms审核接口"
+    },
+    {
+      "name": "wechat-controller",
+      "description": "Wechat Controller"
+    },
+    {
+      "name": "验证码接口",
+      "description": "验证码接口"
+    },
+    {
+      "name": "account-record-controller",
+      "description": "Account Record Controller"
+    },
+    {
+      "name": "initial-data-controller",
+      "description": "Initial Data Controller"
+    },
+    {
+      "name": "metaconfiguration",
+      "description": "MetaConfiguration"
+    },
+    {
+      "name": "app-info-controller",
+      "description": "App Info Controller"
+    },
+    {
+      "name": "模版",
+      "description": "模版"
+    },
+    {
+      "name": "validation-controller",
+      "description": "Validation Controller"
+    },
+    {
+      "name": "mailconfiguration",
+      "description": "MailConfiguration"
+    },
+    {
+      "name": "sms-record-controller",
+      "description": "Sms Record Controller"
+    },
+    {
+      "name": "file-upload-controller",
+      "description": "File Upload Controller"
+    },
+    {
+      "name": "metaconfigurationdefined",
+      "description": "MetaConfigurationDefined"
+    },
+    {
+      "name": "letter-record-controller",
+      "description": "Letter Record Controller"
+    },
+    {
+      "name": "rule-controller",
+      "description": "Rule Controller"
+    },
+    {
+      "name": "sms-template-controller",
+      "description": "Sms Template Controller"
+    },
+    {
+      "name": "event-controller",
+      "description": "Event Controller"
+    },
+    {
+      "name": "服务接口",
+      "description": "服务接口"
+    },
+    {
+      "name": "黑名单接口",
+      "description": "黑名单接口"
+    }
+  ],
+  "paths": {
+    "/boy/account/record/query": {
+      "post": {
+        "tags": [
+          "account-record-controller"
+        ],
+        "summary": "分页查询站内信发送记录",
+        "operationId": "queryPushRecordUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "accountRecordQuery",
+            "description": "accountRecordQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/公众号发送历史记录查询请求"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«PageInfo«OfficialAccountRecord»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/app/create": {
+      "post": {
+        "tags": [
+          "app-info-controller"
+        ],
+        "summary": "申请key页面",
+        "operationId": "addAppInfoUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "appInfo",
+            "description": "appInfo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AppInfoParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/app/query": {
+      "post": {
+        "tags": [
+          "app-info-controller"
+        ],
+        "summary": "查询",
+        "operationId": "queryUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "query",
+            "description": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AppInfoQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AppInfoVO"
+            }
+          }
+        }
+      }
+    },
+    "/boy/app/queryAll": {
+      "get": {
+        "tags": [
+          "app-info-controller"
+        ],
+        "summary": "查询",
+        "operationId": "queryAllUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AppInfoVO"
+            }
+          }
+        }
+      }
+    },
+    "/boy/app/testVerify": {
+      "post": {
+        "tags": [
+          "app-info-controller"
+        ],
+        "summary": "删除",
+        "operationId": "testVerifyUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "appInfo",
+            "description": "appInfo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AppInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/app/update": {
+      "post": {
+        "tags": [
+          "app-info-controller"
+        ],
+        "summary": "更新",
+        "operationId": "updateAppInfoUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "appInfo",
+            "description": "appInfo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AppInfoParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/black/add": {
+      "post": {
+        "tags": [
+          "黑名单接口"
+        ],
+        "summary": "添加黑名单",
+        "operationId": "addUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "poList",
+            "description": "poList",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BlacklistPo"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«List«BlacklistFailResult»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/black/check": {
+      "get": {
+        "tags": [
+          "黑名单接口"
+        ],
+        "summary": "查看是否在黑名单内",
+        "operationId": "checkUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "mobile",
+            "in": "query",
+            "description": "手机号",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "uid",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sources",
+            "in": "query",
+            "description": "黑名单枚举，little_boy-notice、little_boy-mass、little_boy",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/black/del": {
+      "post": {
+        "tags": [
+          "黑名单接口"
+        ],
+        "summary": "删除黑名单",
+        "operationId": "deleteUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "poList",
+            "description": "poList",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BlacklistPo"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«List«BlacklistFailResult»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/appInfo": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "appInfo",
+        "operationId": "appInfoUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appKey",
+            "in": "query",
+            "description": "appKey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appSecret",
+            "in": "query",
+            "description": "appSecret",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/delete": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "delete",
+        "operationId": "deleteUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "key",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/deleteAppInfo": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "deleteAppInfo",
+        "operationId": "deleteAppInfoUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appKey",
+            "in": "query",
+            "description": "appKey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appSecret",
+            "in": "query",
+            "description": "appSecret",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/deleteEventInfo": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "deleteEventInfo",
+        "operationId": "deleteEventInfoUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "eventKey",
+            "in": "query",
+            "description": "eventKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/deleteRuleEventInfo": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "deleteRuleEventInfo",
+        "operationId": "deleteRuleEventInfoUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "eventKey",
+            "in": "query",
+            "description": "eventKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/deleteRuleInfo": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "deleteRuleInfo",
+        "operationId": "deleteRuleInfoUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "ruleId",
+            "in": "query",
+            "description": "ruleId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/deleteRuleResolve": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "deleteRuleResolve",
+        "operationId": "deleteRuleResolveUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "eventKey",
+            "in": "query",
+            "description": "eventKey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleStr",
+            "in": "query",
+            "description": "ruleStr",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/deleteRuleTemplet": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "deleteRuleTemplet",
+        "operationId": "deleteRuleTempletUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "ruleId",
+            "in": "query",
+            "description": "ruleId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/deleteTemplet": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "deleteTemplet",
+        "operationId": "deleteTempletUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "templetId",
+            "in": "query",
+            "description": "templetId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/eventInfo": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "eventInfo",
+        "operationId": "eventInfoUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "eventKey",
+            "in": "query",
+            "description": "eventKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/reloadGroovyCache": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "reloadGroovyCache",
+        "operationId": "reloadGroovyCacheUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "eventKeys",
+            "in": "query",
+            "description": "eventKeys",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/ruleEventInfo": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "ruleEventInfo",
+        "operationId": "ruleEventInfoUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "eventKey",
+            "in": "query",
+            "description": "eventKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«List»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/ruleTemplet": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "ruleTemplet",
+        "operationId": "ruleTempletUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "ruleId",
+            "in": "query",
+            "description": "ruleId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«List»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/white-list-add": {
+      "post": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "cacheWhiteList",
+        "operationId": "cacheWhiteListUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "param",
+            "description": "param",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WhiteListParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/cache/white-list-query": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "inWhiteList",
+        "operationId": "inWhiteListUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "枚举类型：mobile|uid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "description": "手机号或者uid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«boolean»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/event/create": {
+      "post": {
+        "tags": [
+          "event-controller"
+        ],
+        "summary": "新增事件(节点)",
+        "operationId": "createEventUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createRequest",
+            "description": "createRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/事件请求"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/event/delete/{eventKey}": {
+      "post": {
+        "tags": [
+          "event-controller"
+        ],
+        "summary": "根据eventKey删除事件(节点)-软删除",
+        "operationId": "deleteEventUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "eventKey",
+            "in": "path",
+            "description": "eventKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/event/list/name": {
+      "get": {
+        "tags": [
+          "event-controller"
+        ],
+        "summary": "获取事件(节点)名称列表",
+        "operationId": "listEventNamesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/event/query": {
+      "post": {
+        "tags": [
+          "event-controller"
+        ],
+        "summary": "事件(节点)记录分页查询",
+        "operationId": "queryEventsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "eventQuery",
+            "description": "eventQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/事件查询请求"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«PageInfo«EventVO»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/event/query/by/appKey": {
+      "post": {
+        "tags": [
+          "event-controller"
+        ],
+        "summary": "根据appKey分页查询事件(节点)记录",
+        "operationId": "queryEventsByAppKeyUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "eventQuery",
+            "description": "eventQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/事件查询请求"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«PageInfo«Event»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/event/update": {
+      "post": {
+        "tags": [
+          "event-controller"
+        ],
+        "summary": "更新事件(节点)",
+        "operationId": "updateEventUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateRequest",
+            "description": "updateRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/事件请求"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/file/upload": {
+      "post": {
+        "tags": [
+          "file-upload-controller"
+        ],
+        "summary": "upload",
+        "operationId": "uploadUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«string»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/initial/add-rule-templet-rel": {
+      "post": {
+        "tags": [
+          "initial-data-controller"
+        ],
+        "summary": "绑定rule- templet 关系。一条一条的来",
+        "operationId": "addRuleTempletUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "param",
+            "description": "param",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«string»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/letter/record/query": {
+      "post": {
+        "tags": [
+          "letter-record-controller"
+        ],
+        "summary": "分页查询站内信发送记录",
+        "operationId": "queryPushRecordUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "letterRecordQuery",
+            "description": "letterRecordQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/站内信发送历史记录查询请求"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«PageInfo«InternalLetterRecord»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mail/create": {
+      "post": {
+        "tags": [
+          "mailconfiguration"
+        ],
+        "summary": "添加邮箱",
+        "operationId": "addMailUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "mail",
+            "description": "mail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MailConfigParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "error",
+            "description": "error",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mail/query": {
+      "post": {
+        "tags": [
+          "mailconfiguration"
+        ],
+        "summary": "查询全部邮箱信息",
+        "operationId": "queryMailUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mail/update": {
+      "post": {
+        "tags": [
+          "mailconfiguration"
+        ],
+        "summary": "修改邮箱",
+        "operationId": "updateMailUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "mail",
+            "description": "mail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MailConfigParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "error",
+            "description": "error",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc-rule/add": {
+      "post": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "create",
+        "operationId": "createUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "param",
+            "description": "param",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateRuleParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc-templet/create": {
+      "post": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "create",
+        "operationId": "createUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateTempletRequestParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc-templet/get": {
+      "post": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "get",
+        "operationId": "getUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "mcRequest",
+            "description": "mcRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/McRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«List«Templet»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc-templet/update": {
+      "post": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "update",
+        "operationId": "updateUsingPOST_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateTempletRequestParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc/batch/post": {
+      "post": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "get",
+        "operationId": "getUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/McBatchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc/checkcode": {
+      "post": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "验证验证码",
+        "operationId": "checkcodeUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/McCheckVerCodeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc/metadata/platforms": {
+      "get": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "getPlatforms",
+        "operationId": "getPlatformsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc/metadata/tags": {
+      "get": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "getSmsTags",
+        "operationId": "getSmsTagsUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc/send": {
+      "post": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "发送消息",
+        "operationId": "sendMcRequestUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "mcRequest",
+            "description": "mcRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/McRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc/send/by/templetId": {
+      "post": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "试发消息by消息Id",
+        "operationId": "trySendByTempletIdUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "mcTempletRequest",
+            "description": "mcTempletRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/McTempletRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc/send/ewechat": {
+      "post": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "指定内容发送企业微信。仅限内部员工",
+        "operationId": "wechatUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ewechat",
+            "description": "ewechat",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Ewechat"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc/send/mail": {
+      "post": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "指定内容发送邮件",
+        "operationId": "sendMailUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "email",
+            "description": "email",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Email"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc/send/route/mail": {
+      "post": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "路由的方式发送邮件",
+        "operationId": "sendRouteMailUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/McEmailRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc/send/vercode": {
+      "post": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "发送验证码短信",
+        "operationId": "postSmsVerCodeEventUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "mcRequest",
+            "description": "mcRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/McRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/mc/wechat/access_token": {
+      "get": {
+        "tags": [
+          "服务接口"
+        ],
+        "summary": "获取accessToken",
+        "operationId": "getAccessTokenUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appid",
+            "in": "query",
+            "description": "appid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/metaConfig/create": {
+      "post": {
+        "tags": [
+          "metaconfiguration"
+        ],
+        "summary": "添加配置项",
+        "operationId": "addMetaConfigUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "metaConfigVO",
+            "description": "metaConfigVO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MetaConfigVO"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/metaConfig/disabled/{id}": {
+      "post": {
+        "tags": [
+          "metaconfiguration"
+        ],
+        "summary": "禁用配置项",
+        "operationId": "disabledUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/metaConfig/query": {
+      "post": {
+        "tags": [
+          "metaconfiguration"
+        ],
+        "summary": "查询配置项",
+        "operationId": "queryUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "metaConfigQuery",
+            "description": "metaConfigQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MetaConfigQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«PageInfo«object»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/metaConfig/update": {
+      "post": {
+        "tags": [
+          "metaconfiguration"
+        ],
+        "summary": "更改配置项",
+        "operationId": "updateUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "metaConfigVO",
+            "description": "metaConfigVO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MetaConfigVO"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/metaConfigDef/create": {
+      "post": {
+        "tags": [
+          "metaconfigurationdefined"
+        ],
+        "summary": "添加配置类型",
+        "operationId": "addUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "metaConfigDefVO",
+            "description": "metaConfigDefVO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MetaConfigDefVO"
+            }
+          },
+          {
+            "in": "body",
+            "name": "error",
+            "description": "error",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/metaConfigDef/query": {
+      "post": {
+        "tags": [
+          "metaconfigurationdefined"
+        ],
+        "summary": "查询配置类型",
+        "operationId": "queryUsingPOST_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "metaConfigDefQuery",
+            "description": "metaConfigDefQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MetaConfigDefQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«PageInfo«object»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/metaConfigDef/update": {
+      "post": {
+        "tags": [
+          "metaconfigurationdefined"
+        ],
+        "summary": "更改配置类型",
+        "operationId": "updateUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "metaConfigDefVO",
+            "description": "metaConfigDefVO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MetaConfigDefVO"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/push/record/query": {
+      "post": {
+        "tags": [
+          "push-record-controller"
+        ],
+        "summary": "分页查询Push发送记录",
+        "operationId": "queryPushRecordUsingPOST_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "pushRecordQuery",
+            "description": "pushRecordQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Push发送历史记录查询请求"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«PageInfo«PushRecord»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/push/record/test/create": {
+      "post": {
+        "tags": [
+          "push-record-controller"
+        ],
+        "summary": "新增Push发送记录",
+        "operationId": "createPushRecordUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "pushRecordRequest",
+            "description": "pushRecordRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PushRecord"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/push/record/test/update": {
+      "post": {
+        "tags": [
+          "push-record-controller"
+        ],
+        "summary": "更新Push发送记录",
+        "operationId": "updatePushRecordUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "pushRecordRequest",
+            "description": "pushRecordRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PushRecord"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/rule/batch/update": {
+      "post": {
+        "tags": [
+          "rule-controller"
+        ],
+        "summary": "批量修改规则",
+        "operationId": "batchUpdateRuleUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "ruleVO",
+            "description": "ruleVO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RuleVO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/rule/create": {
+      "post": {
+        "tags": [
+          "rule-controller"
+        ],
+        "summary": "新增",
+        "operationId": "addRuleUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "rule",
+            "description": "rule",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RuleVO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/rule/delete/{id}": {
+      "post": {
+        "tags": [
+          "rule-controller"
+        ],
+        "summary": "根据ruleKey删除规则(软删除)",
+        "operationId": "deleteRuleByRuleKeyUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/rule/query": {
+      "post": {
+        "tags": [
+          "rule-controller"
+        ],
+        "summary": "分页查询",
+        "operationId": "queryUsingPOST_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ruleQuery",
+            "description": "ruleQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RuleQuery"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«PageInfo«RuleVO»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/rule/query/by/eventKey": {
+      "post": {
+        "tags": [
+          "rule-controller"
+        ],
+        "summary": "根据eventKey分页查询",
+        "operationId": "queryByEventKeyUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ruleQuery",
+            "description": "ruleQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RuleQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«PageInfo«RuleVO»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/rule/resolveRules": {
+      "get": {
+        "tags": [
+          "rule-controller"
+        ],
+        "summary": "重新解析所有可用的规则",
+        "operationId": "resolveRulesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "eventKey",
+            "in": "query",
+            "description": "eventKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/rule/update": {
+      "post": {
+        "tags": [
+          "rule-controller"
+        ],
+        "summary": "更改rule，只能更改名称，描述，规则表达式",
+        "operationId": "updateRuleUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "ruleVO",
+            "description": "ruleVO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RuleVO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/rule_templet/export": {
+      "get": {
+        "tags": [
+          "rule-templet-import-export-controller"
+        ],
+        "summary": "规则模版导出",
+        "operationId": "exportUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "appKey",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "eventKey",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ruleName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ruleStatus",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "templetName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "templetContent",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "bizType",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "templetType",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "templetStatus",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ruleScript",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "templetStatusList",
+            "in": "query",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "name": "tagId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "tagIds",
+            "in": "query",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "name": "centerTempletCode",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "creator",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "modifier",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/boy/rule_templet/import": {
+      "post": {
+        "tags": [
+          "rule-templet-import-export-controller"
+        ],
+        "summary": "试发消息by消息Id",
+        "operationId": "importeUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/rule_templet/list": {
+      "post": {
+        "tags": [
+          "rule-templet-import-export-controller"
+        ],
+        "summary": "规则模版导出",
+        "operationId": "listUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "templetQuery",
+            "description": "templetQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/模版查询请求"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/send-record/list/{requestid}": {
+      "get": {
+        "tags": [
+          "send-record-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "requestid",
+            "in": "path",
+            "description": "requestid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«List«SendRecord»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/sms/record/query": {
+      "post": {
+        "tags": [
+          "sms-record-controller"
+        ],
+        "summary": "分页查询短信发送记录",
+        "operationId": "querySmsRecordUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "smsRecordQuery",
+            "description": "smsRecordQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/短信发送历史记录查询请求"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«PageInfo«SmsRecord»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/sms/record/test/create": {
+      "post": {
+        "tags": [
+          "sms-record-controller"
+        ],
+        "summary": "新增短信发送记录",
+        "operationId": "createSmsRecordUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "smsRecordRequest",
+            "description": "smsRecordRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SmsRecord"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/sms/record/test/update": {
+      "post": {
+        "tags": [
+          "sms-record-controller"
+        ],
+        "summary": "更新短信发送记录",
+        "operationId": "updateSmsRecordUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "smsRecordRequest",
+            "description": "smsRecordRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SmsRecord"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/sms/template/query": {
+      "post": {
+        "tags": [
+          "sms-template-controller"
+        ],
+        "summary": "查询可用的短信网关模版",
+        "operationId": "queryTemplateUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "param",
+            "description": "param",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/QueryTemplateParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TemplateVO"
+            }
+          }
+        }
+      }
+    },
+    "/boy/sms/template/tag": {
+      "get": {
+        "tags": [
+          "sms-template-controller"
+        ],
+        "summary": "获取短信网关支持的签名",
+        "operationId": "getSmsTagsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SmsTag"
+            }
+          }
+        }
+      }
+    },
+    "/boy/smsAudit/accessList": {
+      "get": {
+        "tags": [
+          "sms审核接口"
+        ],
+        "summary": "获取当前操作人的可审核签名列表",
+        "operationId": "accessListUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«List«SmsAudit»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/smsAudit/create": {
+      "post": {
+        "tags": [
+          "sms审核接口"
+        ],
+        "summary": "添加审核权限",
+        "operationId": "addSmsAuditUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "smsAuditParam",
+            "description": "smsAuditParam",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Audit请求"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/smsAudit/query": {
+      "post": {
+        "tags": [
+          "sms审核接口"
+        ],
+        "summary": "查询",
+        "operationId": "queryUsingPOST_4",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "smsAuditQuery",
+            "description": "smsAuditQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SmsAuditQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«PageInfo«object»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/smsAudit/update": {
+      "post": {
+        "tags": [
+          "sms审核接口"
+        ],
+        "summary": "更改审核权限",
+        "operationId": "updateSmsAuditUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "smsAuditParam",
+            "description": "smsAuditParam",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Audit请求"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/create": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "新增模版",
+        "operationId": "createTempletUsingPOST_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createRequest",
+            "description": "createRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/模版请求"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/delete/{templetId}": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "根据templetId删除模版(软删除)",
+        "operationId": "deleteTempletUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "templetId",
+            "in": "path",
+            "description": "templetId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/email/create": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "新增邮件模版",
+        "operationId": "createTempletUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createRequest",
+            "description": "createRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmailTempletParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/email/update": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "更新模版",
+        "operationId": "updateTempletUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateRequest",
+            "description": "updateRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmailTempletParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/letter/create": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "新增站内信模版",
+        "operationId": "createTempletUsingPOST_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createRequest",
+            "description": "createRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LetterTempletParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/letter/update": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "更新模版",
+        "operationId": "updateTempletUsingPOST_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateRequest",
+            "description": "updateRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LetterTempletParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/list/name": {
+      "get": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "获取消息模版名称列表",
+        "operationId": "listTempletNameUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/mapping/create/{ruleId}/{templetIds}": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "创建模版映射关系",
+        "operationId": "createRuleTempletUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "ruleId",
+            "in": "path",
+            "description": "ruleId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "templetIds",
+            "in": "path",
+            "description": "templetIds",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "collectionFormat": "csv"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/official_account/create": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "新增模版",
+        "operationId": "createTempletUsingPOST_4",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createRequest",
+            "description": "createRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OfficialAccountTempletParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/official_account/mptemplate/all": {
+      "get": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "更新模版",
+        "operationId": "getAllMpUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/official_account/update": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "更新模版",
+        "operationId": "updateTempletUsingPOST_4",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateRequest",
+            "description": "updateRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OfficialAccountTempletParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/query": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "分页查询模版",
+        "operationId": "queryTempletsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "templetQuery",
+            "description": "templetQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/模版查询请求"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TempletVO"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/query-by-ruleid": {
+      "get": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "根据 ruleid 查询有效模板",
+        "operationId": "queryByRuleIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appKey",
+            "in": "query",
+            "description": "appkey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleId",
+            "in": "query",
+            "description": "ruleId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«List«Templet»»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/sms/create": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "新增短信模版",
+        "operationId": "createTempletUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createRequest",
+            "description": "createRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SmsTempletParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/sms/update": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "更新模版",
+        "operationId": "updateTempletUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateRequest",
+            "description": "updateRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SmsTempletParam"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/templet/update": {
+      "post": {
+        "tags": [
+          "模版"
+        ],
+        "summary": "更新模版",
+        "operationId": "updateTempletUsingPOST_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateRequest",
+            "description": "updateRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/模版请求"
+            }
+          },
+          {
+            "in": "body",
+            "name": "errors",
+            "description": "errors",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          },
+          {
+            "name": "handler",
+            "in": "query",
+            "description": "handler",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/validation/email": {
+      "post": {
+        "tags": [
+          "validation-controller"
+        ],
+        "summary": "验证email参数",
+        "operationId": "validateEmailUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "email",
+            "description": "email",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Email"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«string»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/validation/ewechat": {
+      "post": {
+        "tags": [
+          "validation-controller"
+        ],
+        "summary": "验证企业微信参数",
+        "operationId": "validateEwechatUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ewechat",
+            "description": "ewechat",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Ewechat"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«string»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/validation/post-event": {
+      "post": {
+        "tags": [
+          "validation-controller"
+        ],
+        "summary": "验证postEvent参数",
+        "operationId": "validatePostEventUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "mcRequest",
+            "description": "mcRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostEventValidationVO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«ValidationResponseVO»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/validation/post-event-by-templet": {
+      "post": {
+        "tags": [
+          "validation-controller"
+        ],
+        "summary": "验证postEventByTemplateId参数",
+        "operationId": "validatePostEventByTemplateIdUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostEventByTemplateValidationVO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse«ValidationResponseVO»"
+            }
+          }
+        }
+      }
+    },
+    "/boy/vercode/checkVerCode": {
+      "post": {
+        "tags": [
+          "验证码接口"
+        ],
+        "summary": "校验验证码",
+        "operationId": "verifyVerCodeUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VerCodeCheckRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/vercode/generateVerCode": {
+      "post": {
+        "tags": [
+          "验证码接口"
+        ],
+        "summary": "生成验证码",
+        "operationId": "generateVerCodeUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VerCodeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/boy/wechat/accessToken": {
+      "get": {
+        "tags": [
+          "wechat-controller"
+        ],
+        "summary": "getAccessToken",
+        "operationId": "getAccessTokenUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "wechatName",
+            "in": "query",
+            "description": "wechatName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/wechat/config/list": {
+      "get": {
+        "tags": [
+          "wechat-controller"
+        ],
+        "summary": "configList",
+        "operationId": "configListUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/wechat/config/update": {
+      "post": {
+        "tags": [
+          "wechat-controller"
+        ],
+        "summary": "update",
+        "operationId": "updateUsingPOST_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "param",
+            "description": "param",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WechatConfigParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/wechat/template/list": {
+      "get": {
+        "tags": [
+          "wechat-controller"
+        ],
+        "summary": "templetList",
+        "operationId": "templetListUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "wechatName",
+            "in": "query",
+            "description": "wechatName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/wechat/template/sync": {
+      "post": {
+        "tags": [
+          "wechat-controller"
+        ],
+        "summary": "sync",
+        "operationId": "syncUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "wechatName",
+            "in": "query",
+            "description": "wechatName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/boy/wechat/template/update": {
+      "post": {
+        "tags": [
+          "wechat-controller"
+        ],
+        "summary": "updateTemplate",
+        "operationId": "updateTemplateUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "param",
+            "description": "param",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WechatTemplateParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WebApiResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "PageInfo«Event»": {
+      "properties": {
+        "endRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "firstPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hasNextPage": {
+          "type": "boolean"
+        },
+        "hasPreviousPage": {
+          "type": "boolean"
+        },
+        "isFirstPage": {
+          "type": "boolean"
+        },
+        "isLastPage": {
+          "type": "boolean"
+        },
+        "lastPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Event"
+          }
+        },
+        "navigatePages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "navigatepageNums": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "nextPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "orderBy": {
+          "type": "string"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "prePage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "VerCodeCheckRequest": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "PageInfo«RuleVO»": {
+      "properties": {
+        "endRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "firstPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hasNextPage": {
+          "type": "boolean"
+        },
+        "hasPreviousPage": {
+          "type": "boolean"
+        },
+        "isFirstPage": {
+          "type": "boolean"
+        },
+        "isLastPage": {
+          "type": "boolean"
+        },
+        "lastPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RuleVO"
+          }
+        },
+        "navigatePages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "navigatepageNums": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "nextPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "orderBy": {
+          "type": "string"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "prePage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "OfficialAccount": {
+      "properties": {
+        "channel": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messageTempletId": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "officialAccountType": {
+          "type": "string"
+        },
+        "templetId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "SmsAuditQuery": {
+      "required": [
+        "approvers",
+        "id",
+        "tagId"
+      ],
+      "properties": {
+        "approvers": {
+          "type": "string",
+          "description": "逗号分隔的账号列表"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "主键id"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tagId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "标签id"
+        }
+      }
+    },
+    "Push": {
+      "properties": {
+        "platforms": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "WebApiResponse«boolean»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "AppInfoVO": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "appName": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "appStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "ownerList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "McEmailRequest": {
+      "properties": {
+        "aid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "attachment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MailFileSource"
+          }
+        },
+        "cc": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "contentParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "creator": {
+          "type": "string"
+        },
+        "encoding": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "eventParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "openid": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "pushId": {
+          "type": "string"
+        },
+        "sendTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "uid": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "WebApiResponse«string»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "TempletType": {
+      "properties": {
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "WechatText": {
+      "properties": {
+        "content": {
+          "type": "string"
+        },
+        "wechatName": {
+          "type": "string"
+        }
+      }
+    },
+    "SendRecord": {
+      "properties": {
+        "aid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "bizType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "centerTempletCode": {
+          "type": "string"
+        },
+        "channel": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "gatewaySid": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "sendResultDesc": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetName": {
+          "type": "string"
+        },
+        "templetType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "uid": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "SmsAudit": {
+      "properties": {
+        "approvers": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "tagId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "TempletVO": {
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/OfficialAccountVO"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "auditOwners": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "bizType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "centerTempletCode": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "delayTime": {
+          "type": "string"
+        },
+        "emailInfoVO": {
+          "$ref": "#/definitions/EmailInfoVO"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "letter": {
+          "$ref": "#/definitions/LetterVO"
+        },
+        "maxAppVersion": {
+          "type": "string"
+        },
+        "minAppVersion": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "sendType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "smsInfoVO": {
+          "$ref": "#/definitions/SmsInfoVO"
+        },
+        "tagId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tagName": {
+          "type": "string"
+        },
+        "templetContent": {
+          "type": "string"
+        },
+        "templetDesc": {
+          "type": "string"
+        },
+        "templetName": {
+          "type": "string"
+        },
+        "templetStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "toPlatformNames": {
+          "type": "string"
+        },
+        "toPlatforms": {
+          "type": "string"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "AppInfoParam": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "appName": {
+          "type": "string"
+        },
+        "appStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "ownerList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "WhiteListParam": {
+      "required": [
+        "type",
+        "value"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "枚举类型：mobile|uid"
+        },
+        "value": {
+          "type": "string",
+          "description": "手机号或者uid"
+        }
+      }
+    },
+    "SMS": {
+      "properties": {
+        "bizType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "centerTempletCode": {
+          "type": "string"
+        },
+        "tagId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PageInfo«OfficialAccountRecord»": {
+      "properties": {
+        "endRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "firstPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hasNextPage": {
+          "type": "boolean"
+        },
+        "hasPreviousPage": {
+          "type": "boolean"
+        },
+        "isFirstPage": {
+          "type": "boolean"
+        },
+        "isLastPage": {
+          "type": "boolean"
+        },
+        "lastPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OfficialAccountRecord"
+          }
+        },
+        "navigatePages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "navigatepageNums": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "nextPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "orderBy": {
+          "type": "string"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "prePage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "Rule": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "expireDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "ruleDesc": {
+          "type": "string"
+        },
+        "ruleName": {
+          "type": "string"
+        },
+        "ruleScript": {
+          "type": "string"
+        },
+        "ruleStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "站内信发送历史记录查询请求": {
+      "properties": {
+        "creator": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PageInfo«InternalLetterRecord»": {
+      "properties": {
+        "endRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "firstPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hasNextPage": {
+          "type": "boolean"
+        },
+        "hasPreviousPage": {
+          "type": "boolean"
+        },
+        "isFirstPage": {
+          "type": "boolean"
+        },
+        "isLastPage": {
+          "type": "boolean"
+        },
+        "lastPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InternalLetterRecord"
+          }
+        },
+        "navigatePages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "navigatepageNums": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "nextPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "orderBy": {
+          "type": "string"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "prePage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "MailConfigParam": {
+      "properties": {
+        "apps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "auth": {
+          "type": "boolean"
+        },
+        "connectionTimeout": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "host": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "timeout": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "VerCodeRequest": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "effectiveTime": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "length": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numbers": {
+          "type": "boolean"
+        },
+        "sendInterval": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "RuleVO": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "batchRule": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MapVO"
+          }
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "expireDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "ruleDesc": {
+          "type": "string"
+        },
+        "ruleIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "ruleName": {
+          "type": "string"
+        },
+        "ruleScript": {
+          "type": "string"
+        },
+        "ruleScriptMap": {
+          "type": "object"
+        },
+        "ruleStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetNameList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "PageInfo«EventVO»": {
+      "properties": {
+        "endRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "firstPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hasNextPage": {
+          "type": "boolean"
+        },
+        "hasPreviousPage": {
+          "type": "boolean"
+        },
+        "isFirstPage": {
+          "type": "boolean"
+        },
+        "isLastPage": {
+          "type": "boolean"
+        },
+        "lastPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EventVO"
+          }
+        },
+        "navigatePages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "navigatepageNums": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "nextPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "orderBy": {
+          "type": "string"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "prePage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "WebApiResponse«List«SmsAudit»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SmsAudit"
+          }
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "LetterVO": {
+      "properties": {
+        "coverImgUrl": {
+          "type": "string"
+        },
+        "expiredTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "iconUrl": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "intensity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isPromoted": {
+          "type": "boolean"
+        },
+        "isShoudPush": {
+          "type": "boolean"
+        },
+        "isSmallCoverImg": {
+          "type": "boolean"
+        },
+        "isTop": {
+          "type": "boolean"
+        },
+        "maxVer": {
+          "type": "string"
+        },
+        "minVer": {
+          "type": "string"
+        },
+        "newsId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "newsRuleId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platforms": {
+          "type": "string"
+        },
+        "promotedImgUrl": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "templetId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "userType": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "MailFileSource": {
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "byte"
+          }
+        },
+        "fileName": {
+          "type": "string"
+        }
+      }
+    },
+    "模版请求": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "delayTime": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sendType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetDesc": {
+          "type": "string"
+        },
+        "templetName": {
+          "type": "string"
+        },
+        "templetStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetType": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "WebApiResponse": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "object"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "WechatTemplet": {
+      "properties": {
+        "templateId": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "variableList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/WechatVariableTuple"
+          }
+        },
+        "wechatName": {
+          "type": "string"
+        }
+      }
+    },
+    "WebApiResponse«PageInfo«OfficialAccountRecord»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/PageInfo«OfficialAccountRecord»"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "TemplateVO": {
+      "properties": {
+        "remark": {
+          "type": "string"
+        },
+        "tplId": {
+          "type": "string"
+        }
+      }
+    },
+    "TempletData": {},
+    "WebApiResponse«List»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "SmsTempletParam": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "bizType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "centerTempletCode": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "delayTime": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isVercodeHasAlpha": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sendType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tagId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetContent": {
+          "type": "string"
+        },
+        "templetDesc": {
+          "type": "string"
+        },
+        "templetName": {
+          "type": "string"
+        },
+        "templetStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vercodeAllowCountLimit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vercodeDayAllowCountLimit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vercodeEffevticeSecond": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vercodeHourAllowCountLimit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vercodeIntervalSecond": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vercodeLength": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "BlacklistFailResult": {
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "跟type结合使用，表示手机号号或者uid"
+        },
+        "errorMsg": {
+          "type": "string",
+          "description": "错误信息"
+        },
+        "reason": {
+          "type": "string",
+          "description": "原因"
+        },
+        "source": {
+          "type": "string",
+          "description": "来源"
+        },
+        "type": {
+          "type": "string",
+          "description": "跟content结合使用，“mob”表示手机，“uid”表示用户id,具体参考com.wacai.loan.boy.service.constant.BlacklistType"
+        }
+      }
+    },
+    "NewsTuple": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "picurl": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "McBatchRequest": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "mcRequestList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/McRequest"
+          }
+        }
+      }
+    },
+    "McCheckVerCodeRequest": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        }
+      }
+    },
+    "WebApiResponse«List«object»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateTempletRequestParam": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/TempletData"
+        },
+        "delayTime": {
+          "type": "string"
+        },
+        "desc": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "push": {
+          "$ref": "#/definitions/Push"
+        },
+        "sendType": {
+          "type": "string",
+          "enum": [
+            "IMMEDIATE",
+            "DELAY"
+          ]
+        },
+        "sms": {
+          "$ref": "#/definitions/SMS"
+        },
+        "templetType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "$ref": "#/definitions/TempletType"
+        },
+        "wechatImage": {
+          "$ref": "#/definitions/WechatImage"
+        },
+        "wechatNews": {
+          "$ref": "#/definitions/WechatNews"
+        },
+        "wechatTemplate": {
+          "$ref": "#/definitions/WechatTemplet"
+        },
+        "wechatText": {
+          "$ref": "#/definitions/WechatText"
+        }
+      }
+    },
+    "公众号发送历史记录查询请求": {
+      "properties": {
+        "creator": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "短信发送历史记录查询请求": {
+      "properties": {
+        "creator": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "McTempletRequest": {
+      "properties": {
+        "aid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "contentParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "eventParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "openid": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "pushId": {
+          "type": "string"
+        },
+        "sendTarget": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sendTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "templetId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "uid": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "WebApiResponse«PageInfo»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/PageInfo"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "PageInfo«PushRecord»": {
+      "properties": {
+        "endRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "firstPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hasNextPage": {
+          "type": "boolean"
+        },
+        "hasPreviousPage": {
+          "type": "boolean"
+        },
+        "isFirstPage": {
+          "type": "boolean"
+        },
+        "isLastPage": {
+          "type": "boolean"
+        },
+        "lastPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PushRecord"
+          }
+        },
+        "navigatePages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "navigatepageNums": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "nextPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "orderBy": {
+          "type": "string"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "prePage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "SmsTag": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "marketCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Ewechat": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Event": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventDesc": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "eventName": {
+          "type": "string"
+        },
+        "eventParams": {
+          "type": "string"
+        },
+        "eventScriptType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "eventStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "WebApiResponse«List«Templet»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Templet"
+          }
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "OfficialAccountRecord": {
+      "properties": {
+        "aid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "bizType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "channel": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "content": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "gatewaySid": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "openid": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "sendResultDesc": {
+          "type": "string"
+        },
+        "sendType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "uid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "url": {
+          "type": "string"
+        },
+        "wechatName": {
+          "type": "string"
+        },
+        "wechatTempletId": {
+          "type": "string"
+        }
+      }
+    },
+    "WebApiResponse«PageInfo«PushRecord»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/PageInfo«PushRecord»"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "OfficialAccountVO": {
+      "properties": {
+        "channel": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messageTempletId": {
+          "type": "string"
+        },
+        "officialAccountType": {
+          "type": "string"
+        },
+        "templetId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "QueryTemplateParam": {
+      "properties": {
+        "bizType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "业务类型(1.通知, 2.营销, 3.验证码, 4.催收)"
+        },
+        "crowdType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "industryType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tagId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Email": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "attachment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MailFileSource"
+          }
+        },
+        "cc": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "encoding": {
+          "type": "string"
+        },
+        "fromPlatform": {
+          "type": "string"
+        },
+        "html": {
+          "type": "string",
+          "enum": [
+            "HTML",
+            "OTHER"
+          ]
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "HIGH",
+            "EVEN",
+            "SLOW"
+          ]
+        },
+        "subject": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "CreateRuleParam": {
+      "properties": {
+        "request": {
+          "$ref": "#/definitions/CreateRuleRequest"
+        },
+        "templetIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "PostEventByTemplateValidationVO": {
+      "properties": {
+        "aid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "contentParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "eventParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "isReal": {
+          "type": "boolean",
+          "description": "rue: status为可用状态的验证;false: status为包含可用状态和中间状态的验证"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "openid": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "pushId": {
+          "type": "string"
+        },
+        "sendTarget": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sendTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "templetId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "uid": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "模版查询请求": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "bizType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "centerTempletCode": {
+          "type": "string"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ruleName": {
+          "type": "string"
+        },
+        "ruleScript": {
+          "type": "string"
+        },
+        "ruleStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tagId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tagIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "templetContent": {
+          "type": "string"
+        },
+        "templetName": {
+          "type": "string"
+        },
+        "templetStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetStatusList": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "templetType": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "WebApiResponse«PageInfo«RuleVO»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/PageInfo«RuleVO»"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "WebApiResponse«PageInfo«object»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/PageInfo«object»"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "WechatTemplateParam": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isEnable": {
+          "type": "boolean"
+        },
+        "templateId": {
+          "type": "string"
+        },
+        "wechatName": {
+          "type": "string"
+        },
+        "wxTemplateContent": {
+          "type": "string"
+        },
+        "wxTemplateId": {
+          "type": "string"
+        },
+        "wxTemplateTitle": {
+          "type": "string"
+        }
+      }
+    },
+    "EventVO": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventDesc": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "eventName": {
+          "type": "string"
+        },
+        "eventParams": {
+          "type": "string"
+        },
+        "eventStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "params": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "MetaConfigQuery": {
+      "required": [
+        "categoryKey",
+        "configKey",
+        "configValue",
+        "extData",
+        "id",
+        "memo",
+        "owner",
+        "status",
+        "subCategoryKey",
+        "subCategoryName"
+      ],
+      "properties": {
+        "categoryKey": {
+          "type": "string",
+          "description": "配置类型key"
+        },
+        "configKey": {
+          "type": "string",
+          "description": "配置项key"
+        },
+        "configValue": {
+          "type": "string",
+          "description": "配置项转义后的值"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "extData": {
+          "type": "string",
+          "description": "扩展字段"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "主键id"
+        },
+        "memo": {
+          "type": "string",
+          "description": "备注"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string",
+          "description": "owner"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": "配置项是否可用. 1:可用 -1:不可用"
+        },
+        "subCategoryKey": {
+          "type": "string",
+          "description": "子类型key"
+        },
+        "subCategoryName": {
+          "type": "string",
+          "description": "子类型name"
+        }
+      }
+    },
+    "MapVO": {
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object"
+        }
+      }
+    },
+    "WebApiResponse«List«SendRecord»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SendRecord"
+          }
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "EmailInfoVO": {
+      "properties": {
+        "contentType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "fromPlatform": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "useSenderUserName": {
+          "type": "string"
+        }
+      }
+    },
+    "WebApiResponse«PageInfo«SmsRecord»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/PageInfo«SmsRecord»"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "BlacklistPo": {
+      "required": [
+        "content",
+        "type"
+      ],
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "跟type结合使用，表示手机号号或者uid"
+        },
+        "source": {
+          "type": "string",
+          "description": "黑名单枚举，little_boy-notice、little_boy-mass、little_boy"
+        },
+        "type": {
+          "type": "string",
+          "description": "跟content结合使用，“mob”表示手机，“uid”表示用户id,具体参考com.wacai.loan.boy.service.constant.BlacklistType"
+        }
+      }
+    },
+    "WechatNews": {
+      "properties": {
+        "tupleList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NewsTuple"
+          }
+        },
+        "wechatName": {
+          "type": "string"
+        }
+      }
+    },
+    "LetterTempletParam": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "busId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "coverImgUrl": {
+          "type": "string"
+        },
+        "delayTime": {
+          "type": "string"
+        },
+        "expiredTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "iconUrl": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "intensity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isPromoted": {
+          "type": "boolean"
+        },
+        "isShouldPush": {
+          "type": "boolean"
+        },
+        "isSmallCoverImg": {
+          "type": "boolean"
+        },
+        "isTop": {
+          "type": "boolean"
+        },
+        "letterType": {
+          "type": "string"
+        },
+        "maxVer": {
+          "type": "string"
+        },
+        "minVer": {
+          "type": "string"
+        },
+        "promotedImgUrl": {
+          "type": "string"
+        },
+        "sendType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "templetContent": {
+          "type": "string"
+        },
+        "templetDesc": {
+          "type": "string"
+        },
+        "templetName": {
+          "type": "string"
+        },
+        "templetStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "toPlatforms": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "userType": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PostEventValidationVO": {
+      "properties": {
+        "aid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "contentParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "eventParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "isReal": {
+          "type": "boolean"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "openid": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "pushId": {
+          "type": "string"
+        },
+        "sendTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "uid": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "AppInfo": {
+      "properties": {
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "OfficialAccountTempletParam": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "delayTime": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messageTempletId": {
+          "type": "string"
+        },
+        "officialAccountType": {
+          "type": "string"
+        },
+        "sendType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetContent": {
+          "type": "string"
+        },
+        "templetDesc": {
+          "type": "string"
+        },
+        "templetName": {
+          "type": "string"
+        },
+        "templetStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "PageInfo«object»": {
+      "properties": {
+        "endRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "firstPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hasNextPage": {
+          "type": "boolean"
+        },
+        "hasPreviousPage": {
+          "type": "boolean"
+        },
+        "isFirstPage": {
+          "type": "boolean"
+        },
+        "isLastPage": {
+          "type": "boolean"
+        },
+        "lastPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "navigatePages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "navigatepageNums": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "nextPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "orderBy": {
+          "type": "string"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "prePage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "WechatImage": {
+      "properties": {
+        "mediaId": {
+          "type": "string"
+        },
+        "wechatName": {
+          "type": "string"
+        }
+      }
+    },
+    "WechatConfigParam": {
+      "properties": {
+        "appId": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "encodingAESKey": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isEnable": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "wxUsername": {
+          "type": "string"
+        }
+      }
+    },
+    "Templet": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "bizType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "centerTempletCode": {
+          "type": "string"
+        },
+        "coverImgUrl": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "delayTime": {
+          "type": "string"
+        },
+        "extendField": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isSmsHavePlaceholder": {
+          "type": "boolean"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "officialAccount": {
+          "$ref": "#/definitions/OfficialAccount"
+        },
+        "sendType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "tagId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetContent": {
+          "type": "string"
+        },
+        "templetDesc": {
+          "type": "string"
+        },
+        "templetName": {
+          "type": "string"
+        },
+        "templetStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "toPlatforms": {
+          "type": "string"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "PushRecord": {
+      "properties": {
+        "aid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "bizType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "content": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "extendField": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "pushId": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "requestSendTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sendResultDesc": {
+          "type": "string"
+        },
+        "sendType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sendUid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "taskId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "templetId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "toPlatforms": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateRuleRequest": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "desc": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "expireDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "script": {
+          "type": "string"
+        }
+      }
+    },
+    "SmsRecord": {
+      "properties": {
+        "aid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "bizType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "centerTempletCode": {
+          "type": "string"
+        },
+        "channel": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "gatewaySid": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "requestSendTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sendResultDesc": {
+          "type": "string"
+        },
+        "sendType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "taskId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "templetId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "uid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "WebApiResponse«List«BlacklistFailResult»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BlacklistFailResult"
+          }
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "InternalLetterRecord": {
+      "properties": {
+        "aid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "bizType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "content": {
+          "type": "string"
+        },
+        "coverImgUrl": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "expiredTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "iconUrl": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "intensity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isPromoted": {
+          "type": "boolean"
+        },
+        "isShoudPush": {
+          "type": "boolean"
+        },
+        "isSmallCoverImg": {
+          "type": "boolean"
+        },
+        "isTop": {
+          "type": "boolean"
+        },
+        "maxVer": {
+          "type": "string"
+        },
+        "minVer": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "promotedImgUrl": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "requestSendTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sendResultDesc": {
+          "type": "string"
+        },
+        "sendType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sendUid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "taskId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "templetId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "toPlatforms": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "Audit请求": {
+      "required": [
+        "id",
+        "ownerList",
+        "tagId"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "主键id"
+        },
+        "ownerList": {
+          "type": "array",
+          "description": "拥有审核权限的账号集合",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tagId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "标签id"
+        }
+      }
+    },
+    "McRequest": {
+      "properties": {
+        "aid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "appSecret": {
+          "type": "string"
+        },
+        "contentParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "creator": {
+          "type": "string"
+        },
+        "eventKey": {
+          "type": "string"
+        },
+        "eventParams": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "openid": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "pushId": {
+          "type": "string"
+        },
+        "sendTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "uid": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "SmsInfoVO": {
+      "properties": {
+        "isVercodeHasAlpha": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vercodeAllowCountLimit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vercodeDayAllowCountLimit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vercodeEffevticeSecond": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vercodeHourAllowCountLimit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vercodeIntervalSecond": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vercodeLength": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "WechatVariableTuple": {
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "variable": {
+          "type": "string"
+        }
+      }
+    },
+    "WebApiResponse«PageInfo«Event»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/PageInfo«Event»"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "MetaConfigDefQuery": {
+      "required": [
+        "categoryKey",
+        "categoryName",
+        "id",
+        "owner",
+        "status"
+      ],
+      "properties": {
+        "categoryKey": {
+          "type": "string",
+          "description": "配置类型key"
+        },
+        "categoryName": {
+          "type": "string",
+          "description": "配置类型Name"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "主键id"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string",
+          "description": "owner"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": "配置类型是否可用. 1:可用 -1:不可用"
+        }
+      }
+    },
+    "WebApiResponse«PageInfo«EventVO»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/PageInfo«EventVO»"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "Push发送历史记录查询请求": {
+      "properties": {
+        "creator": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "AppInfoQuery": {
+      "properties": {
+        "creator": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "事件请求": {},
+    "MetaConfigVO": {
+      "required": [
+        "categoryKey",
+        "categoryName",
+        "configKey",
+        "configValue",
+        "createdTime",
+        "creator",
+        "extData",
+        "id",
+        "memo",
+        "modifier",
+        "owner",
+        "status",
+        "subCategoryKey",
+        "subCategoryName",
+        "updatedTime"
+      ],
+      "properties": {
+        "categoryKey": {
+          "type": "string",
+          "description": "配置类型key"
+        },
+        "categoryName": {
+          "type": "string",
+          "description": "配置类型name"
+        },
+        "configKey": {
+          "type": "string",
+          "description": "配置项key"
+        },
+        "configValue": {
+          "type": "string",
+          "description": "配置项转义后的值"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "extData": {
+          "type": "string",
+          "description": "扩展字段"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "主键id"
+        },
+        "memo": {
+          "type": "string",
+          "description": "备注"
+        },
+        "modifier": {
+          "type": "string",
+          "description": "更改人"
+        },
+        "owner": {
+          "type": "array",
+          "description": "owner",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": "配置项是否可用. 1:可用 -1:不可用"
+        },
+        "subCategoryKey": {
+          "type": "string",
+          "description": "子类型key"
+        },
+        "subCategoryName": {
+          "type": "string",
+          "description": "子类型name"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间"
+        }
+      }
+    },
+    "MetaConfigDefVO": {
+      "required": [
+        "categoryKey",
+        "categoryName",
+        "createdTime",
+        "creator",
+        "id",
+        "modifier",
+        "owner",
+        "status",
+        "updatedTime"
+      ],
+      "properties": {
+        "categoryKey": {
+          "type": "string",
+          "description": "配置类型key"
+        },
+        "categoryName": {
+          "type": "string",
+          "description": "配置类型name"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "主键id"
+        },
+        "modifier": {
+          "type": "string",
+          "description": "更改人"
+        },
+        "owner": {
+          "type": "array",
+          "description": "owner",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": "配置类型是否可用. 1:可用 -1:不可用"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间"
+        }
+      }
+    },
+    "ValidationResponseVO": {
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "foundEvent": {
+          "$ref": "#/definitions/Event"
+        },
+        "foundRuleList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Rule"
+          }
+        },
+        "foundTempletList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Templet"
+          }
+        },
+        "matchedRuleList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Rule"
+          }
+        },
+        "matchedTempletList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Templet"
+          }
+        }
+      }
+    },
+    "事件查询请求": {
+      "properties": {
+        "creator": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "WebApiResponse«ValidationResponseVO»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/ValidationResponseVO"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "PageInfo": {
+      "properties": {
+        "endRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "firstPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hasNextPage": {
+          "type": "boolean"
+        },
+        "hasPreviousPage": {
+          "type": "boolean"
+        },
+        "isFirstPage": {
+          "type": "boolean"
+        },
+        "isLastPage": {
+          "type": "boolean"
+        },
+        "lastPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "navigatePages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "navigatepageNums": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "nextPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "orderBy": {
+          "type": "string"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "prePage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "WebApiResponse«List«SmsTag»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SmsTag"
+          }
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "WebApiResponse«PageInfo«InternalLetterRecord»»": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/PageInfo«InternalLetterRecord»"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "Map«string,string»": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "RuleQuery": {
+      "properties": {
+        "creator": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "pageIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "EmailTempletParam": {
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "contentType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "delayTime": {
+          "type": "string"
+        },
+        "fromPlatform": {
+          "type": "string"
+        },
+        "handler": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sendType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetContent": {
+          "type": "string"
+        },
+        "templetDesc": {
+          "type": "string"
+        },
+        "templetName": {
+          "type": "string"
+        },
+        "templetStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templetType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "useSenderUserName": {
+          "type": "string"
+        }
+      }
+    },
+    "PageInfo«SmsRecord»": {
+      "properties": {
+        "endRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "firstPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hasNextPage": {
+          "type": "boolean"
+        },
+        "hasPreviousPage": {
+          "type": "boolean"
+        },
+        "isFirstPage": {
+          "type": "boolean"
+        },
+        "isLastPage": {
+          "type": "boolean"
+        },
+        "lastPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SmsRecord"
+          }
+        },
+        "navigatePages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "navigatepageNums": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "nextPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "orderBy": {
+          "type": "string"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "prePage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startRow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    }
+  }
+}
